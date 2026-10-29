@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline exercise for two players to rehearse a shared gesture or yes/no code before a silent co-op puzzle.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:,">
+<title>Co-op Signal Practice</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#192d36;background:#f4f3ed;line-height:1.55}*{box-sizing:border-box}body{margin:0}main{max-width:1080px;margin:auto;padding:44px 24px 32px}a{color:#075c64;text-underline-offset:.2em}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.12;margin-bottom:16px}h2{font-size:1.25rem;line-height:1.3;margin-bottom:16px}h3{font-size:1rem}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;font-weight:750;color:#4d646a}.intro{max-width:740px;font-size:1.08rem}.disclosure{font-size:.9rem;max-width:790px;color:#40565e}.layout{display:grid;grid-template-columns:minmax(230px,.8fr) minmax(0,1.6fr);gap:24px;margin-top:30px}.panel{background:#fff;border:1px solid #c7d1cf;border-radius:12px;padding:24px}.panel+.panel{margin-top:20px}.step{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#e1edeb;border-radius:50%;color:#154a4c;font-size:.85rem;margin-right:8px}.fields{display:grid;gap:15px}label{display:block;font-weight:650}input,select,button{font:inherit}input[type=number],select{display:block;width:100%;padding:11px 12px;border:1px solid #879c9f;border-radius:6px;color:inherit;background:#fff;margin-top:5px;min-height:48px}button{border:1px solid #075c64;background:#075c64;color:#fff;border-radius:6px;padding:11px 16px;min-height:48px;font-weight:700;cursor:pointer}button.secondary{background:#fff;color:#075c64}button:hover{background:#064850;color:#fff}button:disabled{background:#e7ecec;color:#617275;border-color:#bbc8c9;cursor:not-allowed}:focus-visible{outline:3px solid #bb5a20;outline-offset:3px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.hint{font-size:.88rem;color:#40565e;margin:10px 0 0}.active{background:#eaf3f1;border-left:4px solid #367d78;padding:14px 16px;margin-top:20px}.active p:last-child{margin-bottom:0}.mode{font-weight:750;margin-bottom:4px}.summary{font-size:.95rem}.error{color:#943b22;font-weight:650;margin:12px 0 0}.notice{margin:16px 0 0;min-height:1.6em}.card{border:2px solid #196a70;background:#f3f9f7;border-radius:8px;padding:20px;margin-top:18px}.target{font-size:2rem;line-height:1.2;font-weight:800;margin-bottom:14px}.signal{font-size:1.15rem;font-weight:650;overflow-wrap:anywhere}.bits{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:12px 0}.bits li{min-width:48px;padding:8px 10px;border:1px solid #739e9e;border-radius:5px;text-align:center;background:#fff}.checkline{display:flex;align-items:flex-start;gap:10px;margin-top:16px;font-weight:500}.checkline input{margin:4px 0 0;width:20px;height:20px;flex:none;accent-color:#075c64}.feedback{padding:12px 14px;margin:16px 0 0;border-radius:6px}.feedback:empty{display:none}.feedback[data-outcome=correct]{background:#e4f2e6;color:#24542f;border:1px solid #82aa89}.feedback[data-outcome=retry],.feedback[data-outcome=invalid]{background:#fff0de;color:#754214;border:1px solid #cfa878}.small-list{padding-left:20px;margin-bottom:0}.small-list li+li{margin-top:8px}details{border-top:1px solid #c7d1cf;padding-top:16px;margin-top:20px}summary{font-weight:700;cursor:pointer;min-height:32px}.table-wrap{overflow:auto;margin-top:14px;max-height:380px}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #d7dfdd;vertical-align:top}th{background:#edf3f1}td:first-child{white-space:nowrap}caption{text-align:left;color:#40565e;padding:0 0 10px}footer{margin-top:24px;padding-top:20px;border-top:1px solid #c7d1cf;font-size:.9rem;color:#40565e}footer p{max-width:800px}[hidden]{display:none!important}@media(max-width:700px){main{padding:28px 16px}.layout{grid-template-columns:1fr;gap:18px;margin-top:24px}.panel{padding:20px}.actions button{flex:1 1 180px}.intro{font-size:1rem}.target{font-size:1.8rem}}
+</style>
+</head>
+<body><main>
+<header><p class="eyebrow">A rehearsal before the puzzle</p><h1>Co-op Signal Practice</h1><p class="intro">Agree on a code. Send one item without speaking. Check that your partner received the same item before you use the code in a game.</p><p class="disclosure"><strong>Unofficial, independent practice tool.</strong> It does not connect to Big Walk or any other game, read game data, or solve a puzzle. Use one device together; this is not an online multiplayer session.</p></header>
+<div class="layout"><aside>
+<section class="panel" aria-labelledby="setup-title"><h2 id="setup-title"><span class="step" aria-hidden="true">1</span>Agree on the setup</h2>
+<form id="setup-form" novalidate><div class="fields"><label for="options">Possible items <input id="options" name="options" type="number" min="2" max="256" step="1" value="9" inputmode="numeric" required aria-describedby="options-hint"></label><p class="hint" id="options-hint">A whole number from 2 to 256. Give the items a shared order, starting at 1.</p><label for="channels">Distinct gestures <select id="channels" name="channels"><option value="2">2 — left hand / right hand</option><option value="3" selected>3 — left / right / both hands</option><option value="4">4 — add an agreed fourth gesture</option></select></label><label for="repeats">Maximum repeats per gesture <select id="repeats" name="repeats"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label></div><div class="actions"><button type="submit">Apply setup</button></div><p class="error" id="setup-error" role="alert"></p></form><p class="hint">Changes apply only when you choose Apply setup. Applying a setup clears the current turn.</p>
+<div class="active" aria-live="polite" aria-atomic="true"><p class="mode" id="mode"></p><p class="summary" id="setup-summary"></p><p class="hint" id="encoding-note"></p></div></section>
+<section class="panel"><h2>Before the first turn</h2><ol class="small-list"><li>Agree which side counting starts from and what each gesture means.</li><li>For binary signals, agree on one signal for Yes and another for No. Send them from left to right.</li><li>Agree on a distinct stop/restart signal. Test visibility and countability at the distance you will use.</li></ol><p class="hint">Gesture names here are rehearsal labels. Choose actions both players can actually perform and distinguish in their game.</p></section>
+</aside><div>
+<section class="panel" aria-labelledby="sender-title"><h2 id="sender-title"><span class="step" aria-hidden="true">2</span>Send an item</h2><p>The receiver looks away. Draw a target, reveal the sender card, and send its code. Then hide the card before passing the device back.</p><div class="actions"><button id="draw" type="button">Draw a target</button><button id="toggle-card" class="secondary" type="button" aria-expanded="false" aria-controls="sender-card" disabled>Show sender card</button></div><p class="notice" id="turn-status" role="status">No target yet. Draw one when both players are ready.</p><div id="sender-card" class="card" hidden><h3>For the sender only</h3><p class="target" id="target"></p><p class="signal" id="signal"></p><ol class="bits" id="bits" aria-label="Send these signals in order" hidden></ol><p class="hint" id="card-note"></p></div></section>
+<section class="panel receiver" aria-labelledby="receiver-title"><h2 id="receiver-title"><span class="step" aria-hidden="true">3</span>Read it back</h2><p>The receiver enters the item number they understood and repeats that number back to the sender. A match checks the code; it cannot check whether a gesture was visible in the game.</p><form id="guess-form" novalidate><label for="guess">Received item number <input id="guess" name="guess" type="number" min="1" max="9" step="1" inputmode="numeric" required disabled></label><label class="checkline" for="readback"><input id="readback" type="checkbox" required disabled><span>I repeated my item number back to the sender.</span></label><div class="actions"><button id="check" type="submit" disabled>Check the readback</button></div><p id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true"></p></form></section>
+<section class="panel"><h2>Keep the same code</h2><p>If the answer does not match, repeat the same target after checking your starting direction and signal meanings. Swap roles when ready. There is no timer or score to chase.</p><details id="codebook"><summary>Open the shared code table</summary><div class="table-wrap"><table><caption id="table-caption"></caption><thead><tr><th scope="col">Item</th><th scope="col">Code to send</th></tr></thead><tbody id="code-rows"></tbody></table></div></details></section>
+</div></div>
+<footer><p>For the game-specific reasoning, examples and limitations, read <a href="https://thebigwalk.world/en/protocols" rel="noopener">Big Walk Guide’s communication protocols</a>. This independent exercise was created for that guide; it is not affiliated with House House or Panic.</p><p>All calculations and practice state stay in this page. No accounts, analytics, storage, uploads or external code. Download this HTML file to use it offline; the reference link needs an internet connection.</p><div class="actions"><button id="reset" class="secondary" type="button">Reset all practice</button></div><p class="hint">Reset returns to 9 items, 3 gestures and 4 repeats, and clears the target and readback.</p></footer>
+</main>
+<script>
+'use strict';
+(() => {
+  const $ = id => document.getElementById(id);
+  const labels = ['Left hand', 'Right hand', 'Both hands', 'Fourth agreed gesture'];
+  const defaults = { options: 9, channels: 3, repeats: 4 };
+  let config = { ...defaults }, target = null, cardVisible = false;
+  const capacity = () => config.channels * config.repeats;
+  const isGesture = () => config.options <= capacity();
+  const width = () => Math.ceil(Math.log2(config.options));
+  function codeFor(item) {
+    if (isGesture()) {
+      const channel = Math.floor((item - 1) / config.repeats);
+      const count = ((item - 1) % config.repeats) + 1;
+      return { text: labels[channel] + ' · ' + count + (count === 1 ? ' repeat' : ' repeats'), bits: null };
+    }
+    const bits = (item - 1).toString(2).padStart(width(), '0');
+    return { text: bits.split('').map(bit => bit === '1' ? 'Yes' : 'No').join(' → '), bits };
+  }
+  function feedback(text = '', outcome = '') {
+    $('feedback').textContent = text;
+    $('feedback').dataset.outcome = outcome;
+  }
+  function clearTurn(message) {
+    target = null; cardVisible = false;
+    $('sender-card').hidden = true;
+    $('target').textContent = ''; $('signal').textContent = ''; $('bits').replaceChildren();
+    $('toggle-card').disabled = true;
+    $('toggle-card').textContent = 'Show sender card';
+    $('toggle-card').setAttribute('aria-expanded', 'false');
+    $('guess').value = ''; $('readback').checked = false;
+    for (const id of ['guess', 'readback', 'check']) $(id).disabled = true;
+    $('turn-status').textContent = message;
+    feedback();
+  }
+  function renderSetup() {
+    $('mode').textContent = isGesture() ? 'Current code: numbered gestures' : 'Current code: fixed-width Yes / No';
+    $('setup-summary').textContent = config.options + ' items · ' + config.channels + ' gestures × ' + config.repeats + ' repeats = ' + capacity() + ' gesture values.';
+    $('encoding-note').textContent = isGesture()
+      ? 'Each gesture identifies a group; its repeat count identifies the item in that group.'
+      : 'Send exactly ' + width() + ' signals per item. Number items from 1, subtract 1, then read the binary digits left to right: No = 0, Yes = 1. Unused sequences mean stop and resend.';
+    $('guess').max = String(config.options);
+    $('table-caption').textContent = isGesture() ? 'Both players use this ordering.' : width() + ' signals for every item, including leading No signals.';
+    const fragment = document.createDocumentFragment();
+    for (let item = 1; item <= config.options; item += 1) {
+      const tr = document.createElement('tr'), itemCell = document.createElement('td'), codeCell = document.createElement('td');
+      itemCell.textContent = String(item); codeCell.textContent = codeFor(item).text;
+      tr.append(itemCell, codeCell); fragment.append(tr);
+    }
+    $('code-rows').replaceChildren(fragment);
+  }
+  $('setup-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const options = $('options').valueAsNumber, channels = Number($('channels').value), repeats = Number($('repeats').value);
+    if (!Number.isInteger(options) || options < 2 || options > 256 || !Number.isInteger(channels) || channels < 2 || channels > 4 || !Number.isInteger(repeats) || repeats < 2 || repeats > 6) {
+      $('setup-error').textContent = 'Use 2–256 whole-number items, 2–4 gestures and 2–6 repeats. The current setup has not changed.';
+      $('options').focus(); return;
+    }
+    config = { options, channels, repeats }; $('setup-error').textContent = '';
+    renderSetup(); clearTurn('Setup applied. Draw a target when both players are ready.');
+  });
+  $('draw').addEventListener('click', () => {
+    const previous = target;
+    let next;
+    if (previous === null) next = Math.floor(Math.random() * config.options) + 1;
+    else { next = Math.floor(Math.random() * (config.options - 1)) + 1; if (next >= previous) next += 1; }
+    clearTurn('New target ready. Receiver, look away before the sender reveals the card.');
+    target = next; $('toggle-card').disabled = false;
+    for (const id of ['guess', 'readback', 'check']) $(id).disabled = false;
+  });
+  $('toggle-card').addEventListener('click', () => {
+    if (target === null) return;
+    cardVisible = !cardVisible; $('sender-card').hidden = !cardVisible;
+    $('toggle-card').textContent = cardVisible ? 'Hide sender card' : 'Show sender card';
+    $('toggle-card').setAttribute('aria-expanded', String(cardVisible));
+    if (cardVisible) {
+      const code = codeFor(target);
+      $('target').textContent = 'Item ' + target;
+      $('signal').textContent = isGesture() ? code.text : 'Send ' + width() + ' signals, left to right.';
+      $('bits').hidden = code.bits === null; $('bits').replaceChildren();
+      if (code.bits) for (const bit of code.bits) { const li = document.createElement('li'); li.textContent = bit === '1' ? 'Yes' : 'No'; $('bits').append(li); }
+      $('card-note').textContent = isGesture()
+        ? 'Use the agreed gesture and count. Keep item 1 at the same starting point for both players.'
+        : 'Item ' + target + ' minus 1 is ' + (target - 1) + '. Its ' + width() + '-digit binary code is ' + code.bits + '. Include every leading No.';
+      $('turn-status').textContent = 'Sender card visible. Hide it before checking the receiver’s answer.';
+    } else $('turn-status').textContent = 'Sender card hidden. The receiver can enter and repeat their answer.';
+  });
+  $('guess').addEventListener('input', () => { $('readback').checked = false; feedback(); });
+  $('guess-form').addEventListener('submit', event => {
+    event.preventDefault();
+    if (target === null) { feedback('Draw a target first.', 'invalid'); return; }
+    if (cardVisible) { feedback('Hide the sender card before checking the readback.', 'invalid'); return; }
+    const guess = $('guess').valueAsNumber;
+    if (!Number.isInteger(guess) || guess < 1 || guess > config.options) { feedback('Enter a whole item number from 1 to ' + config.options + '.', 'invalid'); $('guess').focus(); return; }
+    if (!$('readback').checked) { feedback('Repeat the item number back to the sender, then tick the readback box.', 'invalid'); $('readback').focus(); return; }
+    if (guess === target) feedback('Match. Item ' + target + ' was received correctly. Swap roles or draw another target when ready.', 'correct');
+    else feedback('Not a match. Keep this target, check the counting direction and repeat the signal. The sender can reveal the card to review it.', 'retry');
+  });
+  $('reset').addEventListener('click', () => {
+    config = { ...defaults };
+    for (const key of ['options', 'channels', 'repeats']) $(key).value = String(defaults[key]);
+    $('setup-error').textContent = ''; $('codebook').open = false;
+    renderSetup(); clearTurn('Practice reset. No target yet. Draw one when both players are ready.');
+  });
+  renderSetup();
+})();
+</script>
+</body>
+</html>
