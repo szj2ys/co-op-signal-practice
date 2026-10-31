@@ -22,6 +22,16 @@ After GitHub finishes deployment, open the hosted URL and try a practice turn. A
 4. Hide the card and pass the device back. The receiver enters an item number, repeats that number back, and checks the readback.
 5. If it does not match, keep the target and review the code. Swap roles when ready. Reset restores the defaults and clears the current turn.
 
+## Printable worksheets
+
+These optional Markdown sheets help a pair record its agreement and observations. Print them or keep your own local notes; the practice page does not read or save them.
+
+- [Shared signal agreement](worksheets/agreement-sheet.md): define ordering, viewpoint, channels and confirmation.
+- [Practice observations](worksheets/observation-sheet.md): record an intended choice and readback, then change one uncertain condition.
+- [Pause and handover](worksheets/handover-sheet.md): distinguish confirmed state from an unfinished exchange when roles change.
+
+The sheets are discussion aids, not an accessibility assessment, game-save feature or performance measure.
+
 ## Encoding
 
 When the items fit within gestures × repeats, item i uses gesture floor((i − 1) / repeats), zero-based, with ((i − 1) % repeats) + 1 repetitions.
